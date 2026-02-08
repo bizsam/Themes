@@ -8,7 +8,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brand = Theme.of(context).extension<BrandTokens>()!;
+    final brand = Theme.of(context).extension<MoodTokens>()!;
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(gradient: brand.gradient),
