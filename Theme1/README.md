@@ -1,15 +1,28 @@
-# Aurora Flutter App Template
+# Aurora Atelier · Editorial Flutter Template
 
-A premium, product-grade Flutter starter for consumer apps inspired by modern fintech and social experiences.
+A design-forward Flutter starter inspired by premium magazines, cultural brands, and boutique creative platforms. Built for storytelling, emotional design, and mood-based theming.
+
+## What’s inside
+- **Immersion**: full-screen splash + story onboarding
+- **Discovery**: editorial feed, highlights, and collections
+- **Profile**: visual bio and portfolio grid
+- **Content**: media-rich article view with parallax and reveal motion
+- **Settings**: mood palette switcher + dashboard feature flags
+- **Dashboards**: modular Analytics, Activity, and Personal modes
 
 ## Folder structure
 ```
 lib/
   app/
     app.dart
+    app_config.dart
     router.dart
     theme_controller.dart
   core/
+    config/
+      feature_flags.dart
+    models/
+      user_role.dart
     theme/
       app_theme.dart
       color_palettes.dart
@@ -19,22 +32,27 @@ lib/
       theme_extensions.dart
       typography.dart
     widgets/
-      app_buttons.dart
-      app_scaffold.dart
-      app_text_field.dart
-      responsive_padding.dart
-      section_header.dart
+      editorial_card.dart
+      editorial_scaffold.dart
+      halo_painter.dart
+      motion_widgets.dart
   features/
-    auth/screens/
-    core/screens/
-    identity/screens/
-    states/screens/
+    dashboards/
+      data/
+      models/
+      screens/
+      dashboard_registry.dart
+    magazine/
+      screens/
 ```
 
 ## Usage examples
-- Start at `/splash` and move to `/onboarding` for the intro carousel.
-- Theme options live in Settings and are powered by Riverpod state.
-- Core navigation uses a Material 3 `NavigationBar` with Home/Search/Alerts/Profile.
+- Start at `/immersion` for the full-screen intro.
+- Route to `/discovery`, `/profile`, `/content`, and `/settings` for the core narrative screens.
+- Open `/dashboards` to view role-aware dashboard modes and `/dashboard/:id` for direct activation.
 
 ## Customization guide
-See `docs/CUSTOMIZATION_GUIDE.md` for theming, typography, and motion customization.
+See `docs/CUSTOMIZATION_GUIDE.md` for mood palettes, typography, and dashboard configuration.
+
+## Design rationale
+See `docs/DESIGN_RATIONALE.md` for the editorial design logic and visual system choices.

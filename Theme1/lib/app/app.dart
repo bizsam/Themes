@@ -9,31 +9,17 @@ class AuroraApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeMode = ref.watch(themeControllerProvider);
-    final lightTheme = themeMode == AppThemeMode.altBrand
-        ? AppTheme.altBrand()
-        : AppTheme.light();
+    final mood = ref.watch(moodControllerProvider);
+    final theme = AppTheme.fromMood(mood);
+    final themeMode = mood == AppMood.darkCinematic ? ThemeMode.dark : ThemeMode.light;
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Aurora',
-      theme: lightTheme,
-      darkTheme: AppTheme.dark(),
-      themeMode: _mapThemeMode(themeMode),
+      title: 'Aurora Atelier',
+      theme: theme,
+      darkTheme: AppTheme.fromMood(AppMood.darkCinematic),
+      themeMode: themeMode,
       routerConfig: appRouter,
     );
-  }
-
-  ThemeMode _mapThemeMode(AppThemeMode mode) {
-    switch (mode) {
-      case AppThemeMode.system:
-        return ThemeMode.system;
-      case AppThemeMode.light:
-        return ThemeMode.light;
-      case AppThemeMode.dark:
-        return ThemeMode.dark;
-      case AppThemeMode.altBrand:
-        return ThemeMode.light;
-    }
   }
 }

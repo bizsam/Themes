@@ -1,21 +1,20 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-enum AppThemeMode {
-  system,
-  light,
-  dark,
-  altBrand,
+enum AppMood {
+  warmEditorial,
+  nordicMinimal,
+  darkCinematic,
+  vibrantArtistic,
 }
 
-class ThemeController extends StateNotifier<AppThemeMode> {
-  ThemeController() : super(AppThemeMode.system);
+class MoodController extends StateNotifier<AppMood> {
+  MoodController() : super(AppMood.warmEditorial);
 
-  void setTheme(AppThemeMode mode) {
-    state = mode;
+  void setMood(AppMood mood) {
+    state = mood;
   }
 }
 
-final themeControllerProvider = StateNotifierProvider<ThemeController, AppThemeMode>(
-  (ref) => ThemeController(),
+final moodControllerProvider = StateNotifierProvider<MoodController, AppMood>(
+  (ref) => MoodController(),
 );

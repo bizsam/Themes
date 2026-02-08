@@ -1,31 +1,49 @@
-# Aurora Flutter Template · Customization Guide
+# Aurora Atelier · Customization Guide
 
-## Brand themes
-- **Light (Fintech)**: `AppTheme.light()` uses `AppColorPalettes.fintech`.
-- **Dark Luxury**: `AppTheme.dark()` uses `AppColorPalettes.darkLuxury`.
-- **Pastel Premium**: `AppTheme.altBrand()` uses `AppColorPalettes.pastelPremium`.
+## Mood-based theme system
+The template ships with four editorial moods:
+- **Warm Editorial**: `AppMood.warmEditorial`
+- **Nordic Minimal**: `AppMood.nordicMinimal`
+- **Dark Cinematic**: `AppMood.darkCinematic`
+- **Vibrant Artistic**: `AppMood.vibrantArtistic`
 
-Update palette values in `lib/core/theme/color_palettes.dart` and the Material 3 tokens will follow automatically via `ColorScheme.fromSeed`.
+Edit palette values in `lib/core/theme/color_palettes.dart`. Themes are built via `AppTheme.fromMood` in `lib/core/theme/app_theme.dart`.
 
 ## Typography
-The type system is defined in `lib/core/theme/typography.dart` using Google Fonts (`Manrope` for headings, `Inter` for UI). Update weights or sizes here for global impact.
+Typography is built around a serif + sans pairing:
+- Display serif: `Playfair Display`
+- UI sans: `Inter`
+- Accent label: `DM Sans`
 
-## Spacing & Radius
+Update font sizes and weights in `lib/core/theme/typography.dart`.
+
+## Spacing & radius
 - Spacing tokens: `lib/core/theme/spacing.dart`
 - Radius tokens: `lib/core/theme/radius.dart`
 
+Generous margins and rhythm-based spacing drive the editorial feel.
+
 ## Motion
-Motion durations and curves are centralized in `lib/core/theme/motion.dart`.
+Motion primitives live in `lib/core/theme/motion.dart`. Scroll reveals and parallax helpers are in `lib/core/widgets/motion_widgets.dart`.
+
+## Dashboard system
+Dashboard modules are pluggable and role-aware:
+1. Update feature flags in `lib/core/config/feature_flags.dart` or via the `featureFlagsProvider` in `lib/app/app_config.dart`.
+2. Add a new dashboard in `lib/features/dashboards/dashboard_registry.dart`.
+3. Provide the screen in `lib/features/dashboards/screens`.
+4. Update role access via `UserRole` in `lib/core/models/user_role.dart`.
+
+Example config:
+```dart
+ref.read(featureFlagsProvider.notifier).state = FeatureFlags(
+  analyticsDashboard: true,
+  activityDashboard: false,
+  personalDashboard: true,
+);
+```
+
+## Theme switching
+Mood switching is handled by `moodControllerProvider` in `lib/app/theme_controller.dart`. The Settings screen demonstrates the UI.
 
 ## Adding new screens
-1. Create a feature folder under `lib/features/<feature>/screens`.
-2. Add the route in `lib/app/router.dart`.
-3. Use `AppScaffold`, `SectionHeader`, and the button/text-field components for consistency.
-
-## State management
-Riverpod is used for global state (example: theme selection in `lib/app/theme_controller.dart`). Add more `StateNotifier` or `AsyncNotifier` providers per feature.
-
-## Accessibility
-- Ensure text contrasts by staying within the provided palettes.
-- Use `SwitchListTile.adaptive` for platform-aware toggles.
-- Provide semantic labels for icons when adding new actions.
+Create a new feature folder under `lib/features`, add the route in `lib/app/router.dart`, and use `EditorialScaffold` for the layout baseline.

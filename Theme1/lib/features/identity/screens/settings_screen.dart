@@ -9,7 +9,7 @@ class SettingsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final mode = ref.watch(themeControllerProvider);
+    final mode = ref.watch(moodControllerProvider);
     return Scaffold(
       appBar: AppBar(title: const Text('Settings')),
       body: SafeArea(
@@ -21,28 +21,28 @@ class SettingsScreen extends ConsumerWidget {
               subtitle: 'Choose the look that matches your mood.',
             ),
             _ThemeOption(
-              title: 'System',
-              subtitle: 'Match your device settings',
-              selected: mode == AppThemeMode.system,
-              onTap: () => ref.read(themeControllerProvider.notifier).setTheme(AppThemeMode.system),
+              title: 'Warm editorial',
+              subtitle: 'Terracotta light and editorial warmth',
+              selected: mode == AppMood.warmEditorial,
+              onTap: () => ref.read(moodControllerProvider.notifier).setMood(AppMood.warmEditorial),
             ),
             _ThemeOption(
-              title: 'Light',
-              subtitle: 'Fintech clarity with fresh highlights',
-              selected: mode == AppThemeMode.light,
-              onTap: () => ref.read(themeControllerProvider.notifier).setTheme(AppThemeMode.light),
+              title: 'Nordic minimal',
+              subtitle: 'Quiet neutrals and spacious layouts',
+              selected: mode == AppMood.nordicMinimal,
+              onTap: () => ref.read(moodControllerProvider.notifier).setMood(AppMood.nordicMinimal),
             ),
             _ThemeOption(
-              title: 'Dark luxury',
-              subtitle: 'Night mode with premium glow',
-              selected: mode == AppThemeMode.dark,
-              onTap: () => ref.read(themeControllerProvider.notifier).setTheme(AppThemeMode.dark),
+              title: 'Dark cinematic',
+              subtitle: 'Inky shadows and luminous accents',
+              selected: mode == AppMood.darkCinematic,
+              onTap: () => ref.read(moodControllerProvider.notifier).setMood(AppMood.darkCinematic),
             ),
             _ThemeOption(
-              title: 'Pastel premium',
-              subtitle: 'Soft gradients with modern warmth',
-              selected: mode == AppThemeMode.altBrand,
-              onTap: () => ref.read(themeControllerProvider.notifier).setTheme(AppThemeMode.altBrand),
+              title: 'Vibrant artistic',
+              subtitle: 'Electric hues with gallery energy',
+              selected: mode == AppMood.vibrantArtistic,
+              onTap: () => ref.read(moodControllerProvider.notifier).setMood(AppMood.vibrantArtistic),
             ),
             const SizedBox(height: AppSpacing.xl),
             const SectionHeader(
